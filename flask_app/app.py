@@ -11,6 +11,7 @@ app = flask.Flask(__name__, template_folder='templates')
 path_to_vectorizer = 'models/vectorizer.pkl'
 path_to_text_classifier = 'models/text-classifier.pkl'
 path_to_image_classifier = 'models/image-classifier.pkl'
+path_to_SVM_fruitTree_classifer = 'models/SVM_fruitTree.pkl'
 
 with open(path_to_vectorizer, 'rb') as f:
     vectorizer = pickle.load(f)
@@ -20,7 +21,8 @@ with open(path_to_text_classifier, 'rb') as f:
 
 with open(path_to_image_classifier, 'rb') as f:
     image_classifier = pickle.load(f)
-
+with open(path_to_SVM_fruitTree_classifer, 'rb') as f:
+    SVM_fruitTree_classifier = pickle.load(f)
 
 
 
@@ -114,13 +116,13 @@ def classify_image():
             img = io.imread(file)
 
             # Resize the image to match the input the model will accept
-            img = transform.resize(img, (28, 28))
+            img = transform.resize(img, (45, 45))
 
             # Flatten the pixels from 28x28 to 784x0
             img = img.flatten()
 
             # Get prediction of image from classifier
-            predictions = image_classifier.predict([img])
+            predictions = SVM_fruitTree_classifier.predict([img])
 
             # Get the value of the prediction
             prediction = predictions[0]
