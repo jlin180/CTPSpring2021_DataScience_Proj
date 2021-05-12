@@ -3,3 +3,9 @@
 /fruits-360/*
 .idea
 */.idea/*
+/flask_app/models/SVM_fruitTree_folder_train.pkl
+/flask_app/models/SVM_fruitTree.pkl
+/flask_app/models/randomforest_model.sav
+/flask_app/SVM_fruitTree.pkl
+*/SVM_fruitTree.pkl
+*/SVM_fruitTree_folder_train.pkl
