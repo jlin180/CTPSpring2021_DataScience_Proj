@@ -1,0 +1,75 @@
+* {
+    padding: 0;
+    box-sizing: border-box;
+    margin: 0;
+}
+
+h1 {
+    font-size: 60px;
+}
+h5 {
+    font-size: 24px;
+}
+.navbar {
+    position: absolute;
+    color: white;
+    padding: 10px;
+    font-weight: bold;
+    font-size: 24px;
+}
+.hero {
+    background: url("Apples1.jpg");
+    background-size: cover;
+    width: 100%;
+    height: 1000px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-family: sans-serif;
+}
+
+.hero > * {
+    margin: 10px;
+}
+
+.hero__btn {
+    font-size: 20px;
+}
+.classifiers {
+    padding: 10px;
+    /* height: 100px; */
+    background-color: #ebebeb;
+}
+.classifiers > ul {
+    display: flex;
+    justify-content: space-around;
+    list-style: none;
+    align-items: flex-end;
+}
+
+.classifiers > ul li {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.btn {
+    color: white;
+    background-color: #ff8a8a;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 50px;
+    font-weight: bold;
+}
+
+.classifier__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.classifier__container__type {
+    color: #ff8a8a;
+}

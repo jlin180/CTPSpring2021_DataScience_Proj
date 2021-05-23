@@ -1,0 +1,24 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+{% extends "index.html"%}
+{% block content%}
+<!--  <head>-->
+<!--    <meta charset="utf-8">-->
+<!--    <title>My Web App</title>-->
+<!--  </head>-->
+<!--  <body>-->
+<!--    <h1> Support Vector Machine (SVM) Image Classifier </h1>-->
+<!--    <h2>Upload Image Here </h2>-->
+<!--    <form method=post enctype=multipart/form-data>-->
+<!--      <input type=file name=file>-->
+<!--      <input type=submit value=Upload>-->
+    </form>
+    {% if prediction %}
+    <p> Prediction for input image is: {{ prediction }} </p>
+    {% endif %}
+    <p>
+      <img src="data:image/png;base64,{{ img_data }}" width="500">
+    </p>
+  </body>
+{% endblock %}
+<!--</html>-->

@@ -4,6 +4,9 @@ import pickle
 import pandas as pd
 from skimage import io
 from skimage import transform
+from io import BytesIO
+from PIL import Image
+import base64
 
 
 app = flask.Flask(__name__, template_folder='templates')
@@ -29,6 +32,11 @@ with open(path_to_SVM_fruitTree_classifer, 'rb') as f:
 with open(path_to_RF_fruitTree_classifier, 'rb') as f:
     RF_fruitTree_classifier = pickle.load(f)
 
+# Uploads can only be up to 15MB, this is checked automatically
+app.config["MAX_CONTENT_LENGTH"] = 15 * 1024 * 1024
+
+# Image types that can be accepted
+app.config["UPLOAD_EXTENSIONS"] = [".jpg", ".jpeg", ".png", ".webp"]
 
 @app.route('/', methods=['GET', 'POST'])
 def main():
@@ -105,15 +113,27 @@ def bootstrap():
     return flask.render_template('bootstrap.html')
 
 
-@app.route('/classify_image/', methods=['GET', 'POST'])
-def classify_image():
+@app.route('/classify_image_SVM/', methods=['GET', 'POST'])
+def classify_image_SVM():
     if flask.request.method == 'GET':
         # Just render the initial form, to get input
-        return(flask.render_template('classify_image.html'))
+        return(flask.render_template('classify_image_SVM.html'))
 
     if flask.request.method == 'POST':
         # Get file object from user input.
         file = flask.request.files['file']
+        img_name = file.filename
+
+        # Checks for the filetype of the file uploaded
+        if img_name != "":
+            file_ext = os.path.splitext(img_name)[1]
+
+            # Checks for file extensions
+            if file_ext not in app.config['UPLOAD_EXTENSIONS']:
+                flask.abort(415)  # Unsorported media type
+        else:
+            return flask.render_template("classify_image_SVM.html")
+
         item_identifier_names = {0: 'Apple Braeburn',
                                  1: 'Apple Crimson Snow',
                                  2: 'Apple Golden 1',
@@ -261,12 +281,29 @@ def classify_image():
             # predictions = RF_fruitTree_classifier.predict([img])
 
             # Get the value of the prediction
-            prediction = item_identifier_names[predictions[0]] + " "+ str(predictions[0])
+            # prediction = item_identifier_names[predictions[0]] + " "+ str(predictions[0])
+            prediction = item_identifier_names[predictions[0]]
 
-            return flask.render_template('classify_image.html', prediction=str(prediction))
+            # For rendering image
+            im = Image.open(file)
+            data = BytesIO()
+            im.save(data, "PNG")
+            # Saves image in-memory, no need to save it into a folder.
+            encoded_img_data = base64.b64encode(data.getvalue())
 
-    return(flask.render_template('classify_image.html'))
+            return flask.render_template('classify_image_SVM.html',
+                                         prediction=str(prediction),
+                                         img_data = encoded_img_data.decode('utf-8'))
 
+    return(flask.render_template('classify_image_SVM.html'))
+
+@app.route('/classify_image_RF', methods=['GET', 'POST'])
+def classify_image_RF():
+    return
+
+@app.route('/classify_image_NFnet', methods=['GEt','POST'])
+def classify_image_NFnet():
+    return
 
 
 
