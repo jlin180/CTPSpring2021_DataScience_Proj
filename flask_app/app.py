@@ -118,7 +118,7 @@ def bootstrap():
 def classify_image_SVM():
     if flask.request.method == 'GET':
         # Just render the initial form, to get input
-        return(flask.render_template('classify_image_SVM.html'))
+        return(flask.render_template('classify_image_SVM.html', name='Support Vector Machine'))
 
     if flask.request.method == 'POST':
         # Get file object from user input.
@@ -133,7 +133,7 @@ def classify_image_SVM():
             if file_ext not in app.config['UPLOAD_EXTENSIONS']:
                 flask.abort(415)  # Unsorported media type
         else:
-            return flask.render_template("classify_image_SVM.html")
+            return flask.render_template("classify_image_SVM.html", name='Support Vector Machine')
 
         item_identifier_names = {0: 'Apple Braeburn',
                                  1: 'Apple Crimson Snow',
@@ -293,16 +293,17 @@ def classify_image_SVM():
             encoded_img_data = base64.b64encode(data.getvalue())
 
             return flask.render_template('classify_image_SVM.html',
+                                         name='Support Vector Machine',
                                          prediction=str(prediction),
                                          img_data = encoded_img_data.decode('utf-8'))
 
-    return(flask.render_template('classify_image_SVM.html'))
+    return(flask.render_template('classify_image_SVM.html', name='Support Vector Machine'))
 
 @app.route('/classify_image_RF/', methods=['GET', 'POST'])
 def classify_image_RF():
     if flask.request.method == 'GET':
         # Just render the initial form, to get input
-        return(flask.render_template('classify_image_RF.html'))
+        return(flask.render_template('classify_image_RF.html', name='Random Forest'))
 
     if flask.request.method == 'POST':
         # Get file object from user input.
@@ -317,7 +318,7 @@ def classify_image_RF():
             if file_ext not in app.config['UPLOAD_EXTENSIONS']:
                 flask.abort(415)  # Unsorported media type
         else:
-            return flask.render_template("classify_image_RF.html")
+            return flask.render_template("classify_image_RF.html", name='Random Forest')
 
         item_identifier_names = {0: 'Apple Braeburn',
                                  1: 'Apple Crimson Snow',
@@ -477,10 +478,11 @@ def classify_image_RF():
             encoded_img_data = base64.b64encode(data.getvalue())
 
             return flask.render_template('classify_image_RF.html',
+                                         name='Random Forest',
                                          prediction=str(prediction),
                                          img_data = encoded_img_data.decode('utf-8'))
 
-    return(flask.render_template('classify_image_RF.html')) 
+    return(flask.render_template('classify_image_RF.html', name='Random Forest')) 
 
 @app.route('/classify_image_NFnet', methods=['GET','POST'])
 def classify_image_NFnet():
