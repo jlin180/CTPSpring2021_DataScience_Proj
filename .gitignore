@@ -9,5 +9,6 @@
 /flask_app/SVM_fruitTree.pkl
 */SVM_fruitTree.pkl
 */SVM_fruitTree_folder_train.pkl
-/flask_app/models/SVM_fruitTree_folder_train_with_probability.pkl
-*/SVM_fruitTree_folder_train_with_probability.pkl
+/flask_app/__pycache__/
+/flask_app/models/pca_model.sav
+/flask_app/models/pca_scaler_model.sav
