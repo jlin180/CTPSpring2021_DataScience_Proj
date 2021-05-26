@@ -1,0 +1,163 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+
+* {
+    padding: 0;
+    box-sizing: border-box;
+    margin: 0;
+    font-family: "Poppins", sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+h1 {
+    font-size: 60px;
+}
+
+h5 {
+    font-size: 24px;
+}
+.navbar {
+    position: absolute;
+    color: white;
+    padding: 10px;
+    font-weight: bold;
+    font-size: 24px;
+}
+.hero {
+    background: url("Apples1.jpg");
+    background-size: cover;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-family: sans-serif;
+    & > * {
+        margin: 10px;
+    }
+
+    &__btn {
+        cursor: pointer;
+        font-size: 20px;
+    }
+}
+
+.classifiers {
+    padding: 10px;
+    /* height: 100px; */
+    background-color: #ebebeb;
+
+    & > ul {
+        display: flex;
+        justify-content: space-around;
+        list-style: none;
+        align-items: flex-end;
+    }
+
+    & > ul li {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        cursor: pointer;
+        height: 100%;
+
+        &:hover {
+            background-color: hsl(0, 0%, 80%);
+            transition: 200ms ease-in-out;
+        }
+    }
+
+    &__container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        &__type {
+            color: #ff8a8a;
+        }
+    }
+}
+
+.form {
+    &__color-code {
+        color: #ff8a8a;
+    }
+    &__output {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        &__header {
+            text-align: center;
+        }
+    }
+}
+#form__svm {
+    display: flex;
+}
+
+#form__random-forest {
+    display: none;
+}
+
+#form__nfnet {
+    display: none;
+}
+
+.btn {
+    color: white;
+    background-color: #ff8a8a;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 50px;
+    font-weight: bold;
+}
+
+.image-classifier__container {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0 20%;
+    &__outer {
+        display: flex;
+        justify-content: space-around;
+        width: 100%;
+    }
+    &__inner {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        h3 {
+            text-align: center;
+        }
+        &__image {
+            display: block;
+            width: 500px;
+            height: 500px;
+        }
+    }
+}
+
+.analytics-container {
+    margin-top: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#header__svm {
+    display: flex;
+}
+#header__random-forest {
+    display: none;
+}
+#header__nfnet {
+    display: none;
+}

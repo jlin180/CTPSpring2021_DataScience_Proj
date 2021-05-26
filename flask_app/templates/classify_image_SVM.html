@@ -12,13 +12,14 @@
 <!--    <form method=post enctype=multipart/form-data>-->
 <!--      <input type=file name=file>-->
 <!--      <input type=submit value=Upload>-->
-    </form>
-    {% if prediction %}
-    <p> Prediction for input image is: {{ prediction }} </p>
-    {% endif %}
-    <p>
-      <img src="data:image/png;base64,{{ img_data }}" width="500">
-    </p>
-  </body>
+<!-- </form> -->
+{% if prediction %}
+<h3 class="form__output__header"> Prediction for input image is: </h3>
+<div class="form__output__prediction">{{prediction}}</div>
+{% endif %}
+<!-- <div>
+  <img src="data:image/png;base64,{{ img_data }}" width="500">
+</div> -->
+<!-- </body> -->
 {% endblock %}
 <!--</html>-->
